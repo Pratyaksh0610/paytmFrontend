@@ -15,11 +15,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/send" element={<Send />} />
+          <Route path="/" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>
+      {/* <Signin /> */}
     </div>
   );
 }
