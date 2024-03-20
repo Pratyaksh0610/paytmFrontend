@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import randomColor from "randomcolor";
-
 const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
   const [amount, setAmount] = useState(0);
@@ -17,7 +16,7 @@ const Modal = ({ isOpen, onClose, children }) => {
       console.log(amount);
       axios
         .post(
-          "http://localhost:3000/api/v1/account/transfer",
+          "https://paytmbackend-29p4.onrender.com/api/v1/account/transfer",
           { to: receriverId, amount: amount },
           { headers }
         )
@@ -81,7 +80,7 @@ export function Dashboard() {
       const cookieValue = Cookies.get("jwtoken");
       try {
         const resolveTokenResponse = await axios.post(
-          "http://localhost:3000/api/v1/user/resolveToken/",
+          "https://paytmbackend-29p4.onrender.com/api/v1/user/resolveToken/",
           {
             token: cookieValue,
           }
@@ -90,7 +89,7 @@ export function Dashboard() {
           setUserData(resolveTokenResponse.data);
           const headers = { Authorization: "Bearer " + cookieValue };
           const balanceResponse = await axios.get(
-            "http://localhost:3000/api/v1/account/balance",
+            "https://paytmbackend-29p4.onrender.com/api/v1/account/balance",
             { headers }
           );
           setUserBalance(balanceResponse.data.balance);
@@ -219,7 +218,9 @@ function Userlist() {
       };
       console.log("query is " + value);
       axios
-        .get("http://localhost:3000/api/v1/user/bulk", { params: queryParams })
+        .get("https://paytmbackend-29p4.onrender.com/api/v1/user/bulk", {
+          params: queryParams,
+        })
         .then((res) => {
           setArr(res.data.user);
           console.log("This is res");

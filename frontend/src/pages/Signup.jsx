@@ -82,12 +82,15 @@ export function Signup() {
                 type="button"
                 onClick={() => {
                   axios
-                    .post("http://localhost:3000/api/v1/user/signup/", {
-                      username: email,
-                      password: password,
-                      firstName: fname,
-                      lastName: lname,
-                    })
+                    .post(
+                      "https://paytmbackend-29p4.onrender.com/api/v1/user/signup/",
+                      {
+                        username: email,
+                        password: password,
+                        firstName: fname,
+                        lastName: lname,
+                      }
+                    )
                     .then((res) => {
                       if (res.status == 200) {
                         Cookies.set("jwtoken", res.data.token);
